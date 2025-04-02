@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <div *ngIf="annonce; else loading" class="card">
+    <div class="card-header">
+      <h3>{{ annonce.title }}</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Description:</strong> {{ annonce.description }}</p>
+      <p><strong>Adresse:</strong> {{ annonce.adress }}</p>
+      <p><strong>Email:</strong> {{ annonce.mail }}</p>
+    </div>
+    <div class="card-footer">
+      <a [routerLink]="'/annonces'" class="btn btn-primary">Retour à la liste</a>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="alert alert-info" role="alert">
+      Chargement des détails de l'annonce...
+    </div>
+  </ng-template>
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+</div>

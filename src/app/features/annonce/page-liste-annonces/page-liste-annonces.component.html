@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <h2 class="mb-4">Liste des Annonces</h2>
+
+  <div *ngIf="annonces.length > 0">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Description</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let annonce of annonces">
+        <td>{{ annonce.id }}</td>
+        <td>{{ annonce.title }}</td>
+        <td>{{ annonce.description }}</td>
+        <td>{{ annonce.adress }}</td>
+        <td>{{ annonce.mail }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="viewAnnonce(annonce.id)">Voir</button>
+          <button class="btn btn-danger btn-sm ms-2" (click)="deleteAnnonce(annonce.id)">Supprimer</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="annonces.length === 0 && !errorMessage" class="alert alert-warning" role="alert">
+    Aucune annonce disponible pour le moment.
+  </div>
+</div>

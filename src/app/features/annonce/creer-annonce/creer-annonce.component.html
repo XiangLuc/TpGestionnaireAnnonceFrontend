@@ -1,0 +1,47 @@
+<div class="container">
+  <h2>Créer une annonce</h2>
+
+  <form [formGroup]="annonceForm" (ngSubmit)="submitAnnonce()">
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre</label>
+      <input type="text" id="title" class="form-control" formControlName="title" />
+      <div *ngIf="annonceForm.get('title')?.invalid && annonceForm.get('title')?.touched" class="text-danger">
+        {{ getErrorMessage('title') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" class="form-control" formControlName="description"></textarea>
+      <div *ngIf="annonceForm.get('description')?.invalid && annonceForm.get('description')?.touched" class="text-danger">
+        {{ getErrorMessage('description') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="adress" class="form-label">Adresse</label>
+      <input type="text" id="adress" class="form-control" formControlName="adress" />
+      <div *ngIf="annonceForm.get('adress')?.invalid && annonceForm.get('adress')?.touched" class="text-danger">
+        {{ getErrorMessage('adress') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="mail" class="form-label">Email</label>
+      <input type="email" id="mail" class="form-control" formControlName="mail" />
+      <div *ngIf="annonceForm.get('mail')?.invalid && annonceForm.get('mail')?.touched" class="text-danger">
+        {{ getErrorMessage('mail') }}
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="annonceForm.invalid">Créer l'annonce</button>
+  </form>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+</div>
